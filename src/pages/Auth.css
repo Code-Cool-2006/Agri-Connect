@@ -1,28 +1,71 @@
-/* Auth Pages Styling - Matching Home.jsx Scheme */
+/* ===============================
+   Auth Container
+   =============================== */
 .auth-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #4caf50, #b3ff00);
+  background: linear-gradient(135deg, #4caf50, #467d2e);
   padding: 20px;
   font-family: "Segoe UI", Roboto, sans-serif;
+  position: relative;
 }
 
+/* ===============================
+   Fixed Right Text Cards
+   =============================== */
+.fixed-cards {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* ===============================
+   Login Card
+   =============================== */
 .auth-card {
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  padding: 50px 40px;
+  border-radius: 40px;
   width: 100%;
   max-width: 400px;
   text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.auth-header {
-  margin-bottom: 30px;
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
+.auth-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+}
+
+/* ===============================
+   Header
+   =============================== */
 .auth-header h2 {
   font-size: 2rem;
   color: #2e7d32;
@@ -31,53 +74,75 @@
 }
 
 .auth-header p {
-  color: #666;
+  color: #555;
   font-size: 1rem;
+  line-height: 1.5;
 }
 
+/* ===============================
+   Form Inputs
+   =============================== */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
+  margin-top: 20px;
 }
 
 .auth-input {
-  padding: 15px;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
+  padding: 14px 16px;
+  border: 2px solid #000; /* black outline added */
+  border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: #fafafa;
+  background: #fefefe;
 }
 
 .auth-input:focus {
   outline: none;
   border-color: #4caf50;
-  background: white;
-  box-shadow: 0px 0px 0px 3px rgba(76, 175, 80, 0.1);
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+  background: #fff;
 }
 
+/* ===============================
+   Buttons
+   =============================== */
 .auth-btn {
   padding: 15px;
-  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  background: #4caf50;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1rem;
-  border: none;
-  border-radius: 10px;
+  border: 2px solid #000; /* black outline added */
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.auth-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+.auth-card {
+  background: #ffffff;
+  padding: 50px 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border: 5px solid #000; /* black outline added */
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  border-color: #333; /* darker outline on hover */
 }
 
 .google-btn {
   background: #db4437;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .google-btn:hover {
@@ -85,6 +150,9 @@
   transform: translateY(-2px);
 }
 
+/* ===============================
+   Divider
+   =============================== */
 .auth-divider {
   display: flex;
   align-items: center;
@@ -92,31 +160,40 @@
   color: #666;
 }
 
+.card {
+  background-color: #ffffff; /* Slight transparency */
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  border: 5px solid #000; /* black outline added */
+  text-align: center;
+  font-weight: 500;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  border-color: #333; /* darker outline on hover */
+}
+
 .auth-divider::before,
 .auth-divider::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: #e0e0e0;
+  background: #ddd;
 }
 
 .auth-divider span {
-  padding: 0 15px;
+  padding: 0 10px;
   font-size: 0.9rem;
 }
 
-.auth-link {
-  color: #4caf50;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.auth-link:hover {
-  color: #2e7d32;
-  text-decoration: underline;
-}
-
+/* ===============================
+   Error & Footer
+   =============================== */
 .auth-error {
   background: #ffebee;
   color: #c62828;
@@ -133,14 +210,27 @@
   font-size: 0.9rem;
 }
 
-/* Responsive Design */
+/* ===============================
+   Responsive Design
+   =============================== */
 @media (max-width: 480px) {
   .auth-card {
-    padding: 30px 20px;
+    padding: 35px 20px;
     margin: 10px;
   }
 
   .auth-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+  }
+
+  .card {
+    width: 180px;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+
+  .fixed-cards {
+    right: 10px;
+    gap: 15px;
   }
 }

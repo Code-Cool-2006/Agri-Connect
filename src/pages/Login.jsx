@@ -22,7 +22,18 @@ export default function Login() {
     if (error) {
       setError(error.message);
     } else {
-      navigate("/home");
+      // Prompt user for name and purpose
+      const userName = prompt("Please enter your name:");
+      const userPurpose = prompt(
+        "What is your purpose for using this platform?"
+      );
+
+      navigate("/home", {
+        state: {
+          userName: userName || "User",
+          userPurpose: userPurpose || "Not specified",
+        },
+      });
     }
   };
 
@@ -84,6 +95,27 @@ export default function Login() {
             Register
           </Link>
         </p>
+      </div>
+      <div className="fixed-cards">
+        <div className="card" style={{ top: "50px" }}>
+          To Change the language, go to the top right corner and click the 3
+          Dots ⁝ you will find the Google Translate button Here. When you click
+          it, a small popup will appear from here select your preferred
+          language. The entire website will be translated into the selected
+          language.
+        </div>
+        <div className="card" style={{ top: "200px" }}>
+          भाषा बदलने के लिए, ऊपर दाएँ कोने में जाएं और 3 बिंदुओं पर क्लिक करें ⁝
+          आपको यहाँ गूगल ट्रांसलेट बटन मिलेगा। जब आप इसे क्लिक करेंगे, तो एक
+          छोटा पॉपअप दिखाई देगा, यहाँ से अपने पसंदीदा भाषा का चयन करें। पूरा
+          वेबसाइट चयनित भाषा में अनुवादित होगा।
+        </div>
+        <div className="card" style={{ top: "350px" }}>
+          ಭಾಷೆ ಬದಲಾಯಿಸಲು, ಮೇಲ್ಮಟ್ಟದ ಬಲ ಕೋಣೆಗೆ ಹೋಗಿ 3 ಬಿಂದುಗಳನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ ⁝
+          ನೀವು ಇಲ್ಲಿ Google Translate ಬಟನ್ ಅನ್ನು ಕಾಣುತ್ತೀರಿ. ಅದನ್ನು ಕ್ಲಿಕ್
+          ಮಾಡಿದಾಗ, ಇಲ್ಲಿಂದ ನಿಮ್ಮ ಮೆಚ್ಚಿನ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ഒരു ಚಿಕ್ಕ ಪೋಪ್
+          ಅಪ್ ಇರಲಿದೆ. ಸಂಪೂರ್ಣ ವೆಬ್‌ಸೈಟ್ ಆಯ್ದ ಭಾಷೆಯಲ್ಲಿ ಅನುવાદಿಸಲಾಗುತ್ತದೆ.{" "}
+        </div>
       </div>
     </div>
   );

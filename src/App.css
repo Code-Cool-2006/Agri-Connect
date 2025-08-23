@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  background: (135deg, #4caf50, #1987a2);
+  background: green;
   color: white;
 }
 

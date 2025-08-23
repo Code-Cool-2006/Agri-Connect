@@ -1,12 +1,13 @@
 import React from "react";
 import { supabase } from "../Services/supabaseClient";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./Home.css";
 
 export default function Home() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -16,6 +17,10 @@ export default function Home() {
   return (
     <div className="home-container">
       <Navbar />
+      <div className="user-info">
+        <h2>Welcome, {location.state?.userName || "User"}!</h2>
+        <p>Purpose: {location.state?.userPurpose || "Not specified"}</p>
+      </div>
       <header className="hero">
         <div className="hero-content">
           <h1>Empowering Farmers, Connecting Markets</h1>
@@ -31,7 +36,11 @@ export default function Home() {
           </button>
         </div>
         <div className="hero-image">
-          <img src="/src/assets/Farmer.png" alt="Farm Illustration" />
+          <img
+            src="/src/assets/Farmer.png"
+            alt="Farm Illustration"
+            className="farmer-image"
+          />
         </div>
       </header>
 
