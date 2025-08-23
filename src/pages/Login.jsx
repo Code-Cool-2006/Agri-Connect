@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Auth.css"; // Importing the new Auth.css
 import { supabase } from "../Services/supabaseClient";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -21,7 +22,7 @@ export default function Login() {
     if (error) {
       setError(error.message);
     } else {
-      navigate("/dashboard");
+      navigate("/home");
     }
   };
 
@@ -30,7 +31,7 @@ export default function Login() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:5173/dashboard", // or your production URL
+        redirectTo: "http://localhost:5173/home", // or your production URL
       },
     });
 
@@ -42,34 +43,48 @@ export default function Login() {
   };
 
   return (
-    <div className="container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2>Login</h2>
+          <p>Welcome back! Please login to your account.</p>
+        </div>
+        <form className="auth-form" onSubmit={handleLogin}>
+          <input
+            type="email"
+            className="auth-input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            className="auth-input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit" className="auth-btn">
+            Login
+          </button>
+        </form>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="auth-error">{error}</p>}
 
-      <p>Or</p>
-      <button onClick={signInWithGoogle} style={{ background: "#DB4437" }}>
-        Sign in with Google
-      </button>
+        <div className="auth-divider">
+          <span>Or</span>
+        </div>
+        <button onClick={signInWithGoogle} className="auth-btn google-btn">
+          Sign in with Google
+        </button>
 
-      <p>
-        Don’t have an account? <Link to="/register">Register</Link>
-      </p>
+        <p className="auth-footer">
+          Don’t have an account?{" "}
+          <Link to="/register" className="auth-link">
+            Register
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

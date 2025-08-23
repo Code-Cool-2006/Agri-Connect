@@ -1,0 +1,83 @@
+import React from "react";
+import { supabase } from "../Services/supabaseClient";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import "./Home.css";
+
+export default function Home() {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/login");
+  };
+
+  return (
+    <div className="home-container">
+      <Navbar />
+      <header className="hero">
+        <div className="hero-content">
+          <h1>Empowering Farmers, Connecting Markets</h1>
+          <p>
+            FarmMarket Pro is India's most trusted platform for farmers,
+            traders, and agri-entrepreneurs. Discover tools, resources, and a
+            thriving marketplace built for you.
+          </p>
+          <button className="cta-btn">Start Exploring</button>
+          {/* Logout button */}
+          <button className="cta-btn logout" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+        <div className="hero-image">
+          <img src="/src/assets/Farmer.png" alt="Farm Illustration" />
+        </div>
+      </header>
+
+      <section className="features">
+        <h2>Why Choose FarmMarket Pro?</h2>
+        <div className="feature-grid">
+          <div className="feature-card">
+            <span className="icon">🌾</span>
+            <h3>Smart Marketplace</h3>
+            <p>
+              Directly connect with buyers & sellers to maximize your profits
+              with zero middlemen.
+            </p>
+          </div>
+          <div className="feature-card">
+            <span className="icon">📊</span>
+            <h3>Price Insights</h3>
+            <p>
+              Get AI-driven crop price predictions and transparent cost
+              calculations.
+            </p>
+          </div>
+          <div className="feature-card">
+            <span className="icon">🚜</span>
+            <h3>Equipment Access</h3>
+            <p>
+              Rent or buy modern farming tools and machinery at affordable
+              prices.
+            </p>
+          </div>
+          <div className="feature-card">
+            <span className="icon">🌍</span>
+            <h3>Community Support</h3>
+            <p>
+              Learn from experts, access resources, and grow with the farming
+              community.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="cta-section">
+        <h2>Join 10,000+ Farmers Already Growing With Us 🌱</h2>
+        <button className="cta-btn">Get Started Now</button>
+      </section>
+      <Footer />
+    </div>
+  );
+}
