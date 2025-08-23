@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../Services/supabaseClient";
+import "./Login.css"; // Importing the CSS file
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc"; // Google icon
 import { motion } from "framer-motion"; // For animations

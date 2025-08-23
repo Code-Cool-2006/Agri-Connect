@@ -13,10 +13,14 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Router>
+      {/* Mount Chatbot globally so it appears everywhere */}
+      <Chatbot />
+
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+
         <Route path="/register" element={<Register />} />
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/price-calculator" element={<PriceCalculator />} />
