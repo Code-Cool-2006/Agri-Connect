@@ -31,6 +31,7 @@ export default function Home() {
           </p>
           <button className="cta-btn">Start Exploring</button>
           {/* Logout button */}
+
           <button className="cta-btn logout" onClick={handleLogout}>
             Logout
           </button>
