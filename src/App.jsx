@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Terms from "./pages/Terms"; // Import Terms component
+import Terms from "./pages/Terms";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Marketplace from "./pages/Marketplace";
@@ -30,7 +30,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/terms" element={<Terms />} /> // Add this line
+        <Route path="/terms" element={<Terms />} />
       </Routes>
     </Router>
   );

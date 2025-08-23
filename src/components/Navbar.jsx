@@ -7,7 +7,7 @@ function Navbar() {
   const [hoveredLink, setHoveredLink] = useState(null);
 
   const links = [
-    { name: "Home", path: "/" },
+    { name: "Home", path: "/home" },
     { name: "Marketplace", path: "/marketplace" },
     { name: "Calculator", path: "/price-calculator" },
     { name: "Tracking", path: "/delivery-tracking" },
