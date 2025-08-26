@@ -58,7 +58,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-  gap: 40px;
+  gap: 90px;
+  width: 50%;
 }
 
 .cta-btn:hover {
@@ -110,9 +111,11 @@
 /* User Info Section */
 .user-info {
   text-align: center;
-  margin: 20px 0;
   padding: 20px;
   background-image: url("/src/assets/user-bg1.jpg");
+  width: 100%;
+  background-size: cover;
+  background-position: center;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }

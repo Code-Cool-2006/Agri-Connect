@@ -13,11 +13,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Router>
-      {/* Mount Chatbot globally so it appears everywhere */}
-      <Chatbot />
-
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
 
@@ -27,12 +24,8 @@ function App() {
         <Route path="/delivery-tracking" element={<DeliveryTracking />} />
         <Route path="/equipment" element={<Equipment />} />
         <Route
-          path="/certified-equipment"
-          element={
-            <ProtectedRoute>
-              <CertifiedEquipmentCard />
-            </ProtectedRoute>
-          }
+          path="/CertifiedEquipmentCard"
+          element={<CertifiedEquipmentCard />}
         />
         <Route path="/terms" element={<Terms />} />
       </Routes>

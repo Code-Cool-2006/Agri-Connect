@@ -24,8 +24,8 @@
 }
 
 .order-input {
-  display: flex;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .order-input input {
@@ -34,16 +34,26 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 1rem;
+  transition: border-color 0.3s;
+  color: #444;
+  background: #fff;
+  /* allow input to grow inside flex container and avoid overflow on small screens */
+  width: auto;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .order-input button {
-  padding: 0.6rem 1rem;
+  flex: 0 0 auto;
+  padding: 0.5rem 0.9rem;
   background: #2d6a4f;
   color: #fff;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s ease;
+  font-size: 0.98rem;
+  width: 50%;
 }
 
 .order-input button:hover {

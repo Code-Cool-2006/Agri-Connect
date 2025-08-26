@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../Services/supabaseClient";
 import "./Login.css"; // Importing the CSS file
 import { useNavigate, Link } from "react-router-dom";
@@ -10,6 +10,69 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    // Upsert profile into 'profiles' table using Auth user data
+    const upsertProfile = async (user) => {
+      if (!user) return;
+      try {
+        const profile = {
+          id: user.id,
+          email: user.email ?? null,
+          full_name:
+            user.user_metadata?.full_name ||
+            user.user_metadata?.name ||
+            user.user_metadata?.preferred_username ||
+            null,
+          avatar_url:
+            user.user_metadata?.avatar_url ||
+            user.user_metadata?.picture ||
+            null,
+          provider: user.app_metadata?.provider || null,
+          updated_at: new Date().toISOString(),
+        };
+
+        const { error: upsertError } = await supabase
+          .from("profiles")
+          .upsert(profile, { returning: "minimal" });
+        if (upsertError) console.error("Profile upsert error:", upsertError);
+      } catch (err) {
+        console.error("upsertProfile error", err);
+      }
+    };
+
+    // 1) Check immediately on mount (after OAuth redirect the user will already be set)
+    (async () => {
+      try {
+        const { data, error: getUserError } = await supabase.auth.getUser();
+        if (getUserError) {
+          // not fatal — log for debugging
+          console.warn("getUser error:", getUserError);
+        }
+        const user = data?.user ?? null;
+        if (user) await upsertProfile(user);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+
+    // 2) Also subscribe to auth state changes while the page is open
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session?.user) {
+        upsertProfile(session.user);
+      }
+    });
+
+    return () => {
+      // cleanup subscription
+      try {
+        sub?.subscription?.unsubscribe?.();
+      } catch (e) {
+        // older client shape fallback
+        sub?.unsubscribe?.();
+      }
+    };
+  }, []);
 
   // Normal login with email & password
   const handleLogin = async (e) => {

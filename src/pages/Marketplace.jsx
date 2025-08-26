@@ -52,56 +52,62 @@ const Marketplace = () => {
   };
 
   return (
-    <div className="marketplace-container">
-      <header className="marketplace-hero">
-        <h1>Marketplace</h1>
-        <p>Shop for seeds, grains, and fertilizers at the best prices</p>
-      </header>
+    <>
+      <Navbar />
+      <div className="marketplace-container">
+        <header className="marketplace-hero">
+          <h1>Marketplace</h1>
+          <p>Shop for seeds, grains, and fertilizers at the best prices</p>
+        </header>
 
-      {/* Categories */}
-      {Object.entries(products).map(([category, items]) => (
-        <section key={category} className="category">
-          <h2>{category}</h2>
-          <div className="product-grid">
-            {items.map((item) => (
-              <div className="product-card" key={item.id}>
-                <span className="icon">{item.icon}</span>
-                <h3>{item.name}</h3>
-                <p>₹{item.price}</p>
-                <button onClick={() => addToCart(item)} className="add-btn">
-                  Add to Cart
-                </button>
-              </div>
-            ))}
-          </div>
+        {/* ✅ Product Categories */}
+        {Object.entries(products).map(([category, items]) => (
+          <section key={category} className="category">
+            <h2>{category}</h2>
+            <div className="product-grid">
+              {items.map((item) => (
+                <div className="product-card" key={item.id}>
+                  <span className="icon">{item.icon}</span>
+                  <h3>{item.name}</h3>
+                  <p>₹{item.price}</p>
+                  <button onClick={() => addToCart(item)} className="add-btn">
+                    Add to Cart
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        {/* ✅ Cart Section */}
+        <section className="cart-section">
+          <h2>Your Cart 🛒</h2>
+          {cart.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <ul>
+              {cart.map((item, index) => (
+                <li key={index}>
+                  {item.name} - ₹{item.price}
+                </li>
+              ))}
+            </ul>
+          )}
+          <button onClick={checkout} className="checkout-btn">
+            Checkout
+          </button>
+          {orderNumber && (
+            <p className="order-success">
+              ✅ Order placed successfully! <br />
+              Your Order Number: <strong>{orderNumber}</strong>
+            </p>
+          )}
         </section>
-      ))}
 
-      {/* Cart Section */}
-      <section className="cart-section">
-        <h2>Your Cart 🛒</h2>
-        {cart.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <ul>
-            {cart.map((item, index) => (
-              <li key={index}>
-                {item.name} - ₹{item.price}
-              </li>
-            ))}
-          </ul>
-        )}
-        <button onClick={checkout} className="checkout-btn">
-          Checkout
-        </button>
-        {orderNumber && (
-          <p className="order-success">
-            ✅ Order placed successfully! <br />
-            Your Order Number: <strong>{orderNumber}</strong>
-          </p>
-        )}
-      </section>
-    </div>
+        {/* ✅ Footer at the bottom */}
+        <Footer />
+      </div>
+    </>
   );
 };
 

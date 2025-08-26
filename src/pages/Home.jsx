@@ -61,7 +61,9 @@ export default function Home() {
             traders, and agri-entrepreneurs. Discover tools, resources, and a
             thriving marketplace built for you.
           </p>
-          <button className="cta-btn">Start Exploring</button>
+          <button className="cta-btn" oncl>
+            Start Exploring
+          </button>
 
           {/* Logout button */}
           <button className="cta-btn logout" onClick={handleLogout}>
@@ -116,7 +118,9 @@ export default function Home() {
       </section>
       <section className="cta-section">
         <h2>Join 10,000+ Farmers Already Growing With Us 🌱</h2>
-        <button className="cta-btn">Get Started Now</button>
+        <button className="cta-btn" onClick={() => navigate("/Marketplace")}>
+          Get Started Now
+        </button>
       </section>
       <Footer />
     </div>
