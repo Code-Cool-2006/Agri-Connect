@@ -73,7 +73,7 @@ export default function Home() {
 
         <div className="hero-image">
           <img
-            src="/src/assets/Farmer.png"
+            src="src/assets/Farmer.png"
             alt="Farm Illustration"
             className="farmer-image"
           />
